@@ -1,0 +1,86 @@
+
+# WHILE 20210515: Hag un programa que permita capturar una lista de n números
+# y al final me calcule y me muestre el promedio de los números.
+
+cantidad=int(input("Ingrese la cantidad de números que quiere calcular"))
+contador=1
+suma=0
+
+while (contador<=cantidad):
+    print(contador, end=".")
+    suma=suma+int(input("Ingrese el número:"))
+    contador=contador+1
+print("--FIN DEL CICLO--")
+print("La suma de los "+str(cantidad)+" números ingresados es: ",suma,", el promedio es: ",suma/cantidad)
+
+#Ejercicio 1: debe realizar un muestreo con N personas para determinar 
+#el promedio de peso de los niños, jóvenes, adultos y viejos 
+#que existen en su zona habitacional.   Se determinan las categorías así:
+		#CATEGORIA			EDAD
+		#Niños				0 - 12
+		#Jóvenes			13 - 29
+		#Adultos			30 - 59
+		#Viejos				60 en adelante
+
+numP=int(input("Ingrese el número de personas a ingresar: "))
+contador=1
+edad=0
+pNinos=0
+numNinos=0
+pJovenes=0
+numJovenes=0
+pAdultos=0
+numAdultos=0
+pViejos=0
+numViejos=0
+
+#De aquí en adelante empezará a preguntar por cada individuo
+while contador<=numP:
+    edad=int(input("Ingrese la EDAD del individuo "+str(contador)+":"))
+    peso=int(input("Ingrese el PESO de la persona "+str(contador)+":"))
+    if 0<edad<=12:
+        pNinos=pNinos+peso
+        numNinos+=1
+        contador+=1
+    elif 12<edad<=29:
+        pJovenes=pJovenes+peso
+        numJovenes+=1
+        contador+=1
+    elif 29<edad<=59:
+        pAdultos=pAdultos+peso
+        numAdultos+=1
+        contador+=1
+    elif 59<edad<=150:
+        pViejos=pViejos+peso
+        numViejos+=1
+        contador+=1
+    else:
+        print("¡Esa edad está sospechosa!")
+        contador=numP
+#De aquí en adelante empezará a mostrar los resultado por categoría usando tabuladores '\t'
+print("Los datos ingresados son:")
+print("Categoría \t # \t Peso \t Promedio")
+if numNinos>0:
+    print("Niños \t\t",str(numNinos)+"\t",str(pNinos)+"\t",pNinos/numNinos)
+else: #En caso que el número de niños sea 0, se ponen estos valores para evitar la división por 0.
+    print("Niños \t\t",str(0)+"\t",str(0)+"\t",str(0))
+if numJovenes>0:
+    print("Jovenes \t",str(numJovenes)+"\t",str(pJovenes)+"\t",pJovenes/numJovenes)
+else:
+    print("Jovenes \t",str(0)+"\t",str(0)+"\t",str(0))
+if numAdultos>0:    
+    print("Adultos \t",str(numAdultos)+"\t",str(pAdultos)+"\t",pAdultos/numAdultos)
+else:
+    print("Adultos \t",str(0)+"\t",str(0)+"\t",str(0))
+if numViejos>0:
+    print("Viejos \t\t",str(numViejos)+"\t",str(pViejos)+"\t",pViejos/numViejos)
+else:
+    print("Viejos \t\t",str(0)+"\t",str(0)+"\t",str(0))
+#FIN
+    
+2)En un supermercado un cajero captura los precios de los artículos 
+que los clientes compran e indica a cada cliente cuál es el monto 
+de lo que deben pagar.   
+Al final del día le indica a su supervisor 
+cuánto fué lo que cobró en total a todos los clientes 
+que pasaron por su caja y cual fue el mayor monto de todos.
