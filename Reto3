@@ -1,0 +1,78 @@
+#RETO 3 John Sora, Prohibido su uso de este código sin autorización del autor.
+
+#Inicialización de Listas
+sucursales=[]
+medIniciales=[]
+#contador de pacientes
+numPacientes=0
+numSucursales=0
+#Contador de Medicamento 1 
+contMed1=0
+
+#Si las sucursales son menores a 1, se vuelve a preguntar
+while numSucursales<1:
+  n,m=input("Ingrese el # de sucursales y pacientes separados por un espacio: ").split(" ")
+  numSucursales=int(n)
+  numPacientes=int(m)
+
+else:
+  #Inicializa una lista sucursales y otra de los mdicamentos inicialmente asignados para calcular el promedio
+  for i in range(0,numSucursales):
+    sucursales.append(0)
+    medIniciales.append(0)
+  print("Num Sucursales: "+str(len(sucursales)))
+  print("Pacientes: "+str(numPacientes))
+
+for i in range (len(sucursales)):
+  sucursales[i]=int(input("Ingrese medicamento de la sucursal "+str(i+1)+" "))
+  medIniciales[i]=sucursales[i]
+else:
+  print("Los medicamentos por sucursal son: ", sucursales)
+
+for i in range (numPacientes):
+  s,ps,pd=input("Ingrese la sucursal, P. sistólica, y P. diastólica del paciente separado por espacios: ").split(" ")
+  sucursalPaciente=int(s)
+  pSistolica=int(ps)
+  pDiastolica=int(pd)
+
+  #Se asigna, siempre y cuando exista la sucursal
+  #if sucursalPaciente in sucursales:
+  if (pDiastolica<90 and pDiastolica<70) and (pDiastolica>0 and pSistolica>0):
+    sucursales[sucursalPaciente-1]-=15
+  elif (pSistolica>=90 and pSistolica<130) and (pDiastolica>=70 and pDiastolica<90):
+    sucursales[sucursalPaciente-1]-=0
+  elif (pSistolica>=130 and pSistolica<140) and (pDiastolica>=90 and pDiastolica<95):
+    sucursales[sucursalPaciente-1]-=0
+  elif (pSistolica>=140 and pSistolica<150) and (pDiastolica>=95 and pDiastolica<100):
+    sucursales[sucursalPaciente-1]-=10
+  elif (pSistolica>=150 and pSistolica<170) and (pDiastolica>=100 and pDiastolica<110):
+    sucursales[sucursalPaciente-1]-=10
+  elif (pSistolica>=170 and pSistolica<190) and (pDiastolica>=110 and pDiastolica<120):
+    sucursales[sucursalPaciente-1]-=20
+  elif pSistolica>=190 and pDiastolica>=120:
+    sucursales[sucursalPaciente-1]-=50
+  elif pSistolica>=150 and pDiastolica<100:
+    sucursales[sucursalPaciente-1]-=20
+else:
+  #busca la sucursal con la menor cantidad de existencias
+  menor=sucursales[0]
+  for i in range (len(sucursales)):
+      if menor>sucursales[i]:
+        menor=sucursales[i]
+  numSucursal=int(sucursales.index(menor))+1
+  print(numSucursal,menor)
+
+  #busca la sucursal con la MAYOR cantidad de existencias
+  mayor=sucursales[0]
+  for i in range (len(sucursales)):
+      if mayor<sucursales[i]:
+        mayor=sucursales[i]
+  numSucursal=int(sucursales.index(mayor))+1
+  print(numSucursal,mayor)
+
+  for i in range (len(sucursales)):
+    promedio=(1-sucursales[i]/medIniciales[i])*100
+    print(i+1,f"{promedio:.2f}"+"%")
+
+
+    
